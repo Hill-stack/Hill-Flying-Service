@@ -1,86 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Merry Christmas, Dad!</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="src\styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>🎄🎄🎄 Merry Christmas! 🎄🎄🎄</h1>
-        
-        <div class="message-box">
-            <p> ,</p>
-            <p>I wanted to build you something special this year. Thank you for everything you do for me. I hope your day is filled with relaxation and joy!</p>
-        </div>
+      <h1>🎄🎄🎄 Merry Christmas! 🎄🎄🎄</h1>
 
-        <div class="gift-container" onclick="revealGift()">
-            <div id="gift-ribbon">🎁</div>
-            <p>Click the gift to open it!</p>
-            <div id="surprise-text">
-                🎟️ I'm taking you out for dinner at your favorite steakhouse!
-            </div>
-        </div>
+      <div class="message-box">
+        <p id="address" text-align="Right">Hey Dad,</p>
+        <p>
+          As another year wraps up, I&#x27;ve been reflecting on how lucky I am
+          to have you in my corner. Life moves so fast, and I&#x27;m sorry I
+          haven&#x27;t been around as much as I&#x27;d like lately. Even when
+          I&#x27;m busy, please know I&#x27;m always grateful for everything
+          you&#x27;ve done for me. Hopefully, next year I can give you something
+          even cooler than a static webpage—maybe even a browser game in
+          JavaScript.
+        </p>
+      </div>
 
-        <p style="margin-top: 50px; font-style: italic;">With love, [Your Name]</p>
+      <p style="margin-top: 50px; font-style: italic">From your son,</p>
+      <p>Christian</p>
     </div>
 
     <canvas class="snow" id="snowCanvas"></canvas>
 
     <script>
-        function revealGift() {
-            document.getElementById('surprise-text').style.display = 'block';
-            document.getElementById('gift-ribbon').innerHTML = '🎉🎉🎉';
+      // Simple Snowfall Script
+      const canvas = document.getElementById("snowCanvas");
+      const ctx = canvas.getContext("2d");
+      let width,
+        height,
+        snowflakes = [];
+
+      function init() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        for (let i = 0; i < 100; i++) {
+          snowflakes.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 4 + 1,
+            d: Math.random() * 1,
+          });
         }
+      }
 
-        // Simple Snowfall Script
-        const canvas = document.getElementById('snowCanvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, snowflakes = [];
-
-        function init() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            for (let i = 0; i < 100; i++) {
-                snowflakes.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    r: Math.random() * 4 + 1,
-                    d: Math.random() * 1
-                });
-            }
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        for (let i = 0; i < snowflakes.length; i++) {
+          let p = snowflakes[i];
+          ctx.moveTo(p.x, p.y);
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
         }
+        ctx.fill();
+        update();
+      }
 
-        function draw() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = "white";
-            ctx.beginPath();
-            for (let i = 0; i < snowflakes.length; i++) {
-                let p = snowflakes[i];
-                ctx.moveTo(p.x, p.y);
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
-            }
-            ctx.fill();
-            update();
+      function update() {
+        for (let i = 0; i < snowflakes.length; i++) {
+          let p = snowflakes[i];
+          p.y += Math.cos(p.d) + 1 + p.r / 2;
+          p.x += Math.sin(0) * 2;
+          if (p.x > width + 5 || p.x < -5 || p.y > height) {
+            snowflakes[i] = {
+              x: Math.random() * width,
+              y: -10,
+              r: p.r,
+              d: p.d,
+            };
+          }
         }
+      }
 
-        function update() {
-            for (let i = 0; i < snowflakes.length; i++) {
-                let p = snowflakes[i];
-                p.y += Math.cos(p.d) + 1 + p.r / 2;
-                p.x += Math.sin(0) * 2;
-                if (p.x > width + 5 || p.x < -5 || p.y > height) {
-                    snowflakes[i] = { x: Math.random() * width, y: -10, r: p.r, d: p.d };
-                }
-            }
-        }
-
-        init();
-        setInterval(draw, 33);
+      init();
+      setInterval(draw, 33);
     </script>
-</body>
+  </body>
 </html>

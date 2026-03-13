@@ -71,4 +71,108 @@
         }
 
         .hero p { 
-            font-size: 1.4rem;
+            font-size: 1.4rem; 
+            margin-bottom: 25px; 
+            max-width: 700px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+
+        .btn {
+            background: var(--primary-red);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn:hover { background: #b30000; transform: translateY(-2px); }
+
+        /* Training Sections */
+        .content-section {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary-red);
+        }
+
+        .card h3 { color: var(--dark-slate); margin-top: 0; }
+
+        /* Footer */
+        footer {
+            background: var(--dark-slate);
+            color: #bdc3c7;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .footer-logo { color: white; font-size: 1.2rem; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">HILL <span>FLYING SERVICE</span></div>
+        <nav>
+            <a href="#services">Training</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Take Command of the Sky</h1>
+        <p>Premium Flight Training in the Pacific Northwest and Beyond.</p>
+        <a href="#contact" class="btn">Schedule Your First Lesson</a>
+    </section>
+
+    <section class="content-section" id="services">
+        <h2>Professional Flight Training</h2>
+        <div class="services">
+            <div class="card">
+                <h3>Private Pilot</h3>
+                <p>The foundation of your aviation career. Learn the fundamentals of flight in our Cessna 182.</p>
+            </div>
+            <div class="card">
+                <h3>Instrument Rating</h3>
+                <p>Learn to fly with precision using only your instruments. Safety and skill for all conditions.</p>
+            </div>
+            <div class="card">
+                <h3>Discovery Flight</h3>
+                <p>Experience the thrill for $199. A 40-minute flight where YOU take the controls with an instructor.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: #eee; padding: 60px 10%; text-align: center;" id="about">
+        <h2>About Hill Flying Service</h2>
+        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+            Based out of [Insert Airport Name], we provide a relaxed but professional environment for student pilots. 
+            Whether you are pursuing a career in the airlines or looking for the freedom of weekend travel, 
+            our goal is to make you a safe, confident pilot.
+        </p>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-logo"><strong>HILL</strong> FLYING SERVICE</div>
+        <p>Airport Road, Hangar #4 | Phone: (555) 012-3456</p>
+        <p>&copy; 2024 Hill Flying Service. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

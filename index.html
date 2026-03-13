@@ -5,48 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hill Flying Service | Flight School</title>
     <style>
-        /* Basic Reset & Branding Colors */
+        /* Modern Branding Colors based on the Cessna 182 Colors */
+        :root {
+            --primary-red: #8B0000; /* Deep red from the plane stripe */
+            --dark-slate: #2c3e50;
+            --light-bg: #fdfdfd;
+            --text-color: #333;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: var(--text-color);
             line-height: 1.6;
+            background-color: var(--light-bg);
         }
 
-        :root {
-            --primary-blue: #003366;
-            --accent-gold: #D4AF37;
-            --light-gray: #f4f4f4;
-        }
-
-        /* Header & Navigation */
+        /* Header */
         header {
-            background: var(--primary-blue);
-            color: white;
-            padding: 1rem 5%;
+            background: white;
+            color: var(--dark-slate);
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 3px solid var(--primary-red);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; }
+        .logo span { color: var(--primary-red); }
+
         nav a {
-            color: white;
+            color: var(--dark-slate);
             text-decoration: none;
             margin-left: 20px;
-            font-weight: bold;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
-        /* Hero Section */
+        /* Hero Section with YOUR Image */
         .hero {
-            background: linear-gradient(rgba(0,51,102,0.7), rgba(0,51,102,0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
                         url('https://github.com/Hill-stack/Hill-Flying-Service/blob/main/plane_cessna_182.jpg?raw=true');
             background-size: cover;
             background-position: center;
-            height: 60vh;
+            height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -56,95 +64,11 @@
             padding: 0 20px;
         }
 
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
-
-        .btn {
-            background: var(--accent-gold);
-            color: #000;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
+        .hero h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 10px; 
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
         }
 
-        .btn:hover { background: #b8962d; }
-
-        /* Services Section */
-        .services {
-            padding: 50px 5%;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            width: 300px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .card h3 { color: var(--primary-blue); }
-
-        /* Footer */
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo"><strong>HILL</strong> FLYING SERVICE</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#services">Training</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Your Journey to the Clouds Starts Here</h1>
-        <p>Professional Flight Instruction & Discovery Flights</p>
-        <a href="#contact" class="btn">Book a Discovery Flight</a>
-    </section>
-
-    <section class="services" id="services">
-        <div class="card">
-            <h3>Private Pilot</h3>
-            <p>Earn your wings and fly anywhere in the country with our comprehensive training program.</p>
-        </div>
-        <div class="card">
-            <h3>Instrument Rating</h3>
-            <p>Master the art of flying through the clouds using advanced navigation and radio tools.</p>
-        </div>
-        <div class="card">
-            <h3>Discovery Flights</h3>
-            <p>The perfect gift. Take the controls for the first time with an instructor by your side.</p>
-        </div>
-    </section>
-
-    <section style="text-align: center; padding: 40px; background: var(--light-gray);">
-        <h2>Why Fly With Hill?</h2>
-        <p style="max-width: 600px; margin: 0 auto;">We pride ourselves on personalized instruction that fits your schedule. Whether you're flying for a career or for fun, we treat every student like family.</p>
-    </section>
-
-    <footer id="contact">
-        <p><strong>Hill Flying Service</strong></p>
-        <p>Local Airport | Phone: (555) 123-4567 | Email: info@hillflying.com</p>
-        <hr style="width: 50px; border: 1px solid var(--accent-gold);">
-        <p>&copy; 2026 Hill Flying Service. All Rights Reserved.</p>
-    </footer>
-
-</body>
-</html>
+        .hero p { 
+            font-size: 1.4rem;

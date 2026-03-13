@@ -112,70 +112,41 @@
 
 <div class="container">
     <header>
-        <h1>Hill Dispatch Notes</h1>
-        <small>Pilot Log & Reminders</small>
+        <h1>Hill Dev Notes</h1>
+        <small></small>
     </header>
 
     <div class="note-input-area">
-        <textarea id="noteText" placeholder="Write a note (e.g., 'Oil change due for N51FR in 10 hours' or 'Student Smith solo tomorrow')"></textarea>
-        <button onclick="addNote()">Add Note</button>
+<h2>Some questions you can answer for me by emailing me at christianhill644@gmail.com</h2>
+<p>What is the primary airport you fly out of?
+
+Which specific aircrafts do you use? (Just the models, like Cessna 172N or Piper Archer)
+
+What are your main services? (Private Pilot, Instrument Rating, Commercial, or Discovery Flights?)
+
+2. The "Sales" Stuff
+What is the price for a Discovery Flight?
+
+Do you have a "standard" hourly rate for the plane vs. the instructor?
+
+What makes Hill Flying Service different? (e.g., "I've been flying for 30 years," "We have the best maintenance," or "We offer flexible scheduling for working adults.")
+
+3. The Personal Touch
+What’s your "Origin Story"? Why did you start the school, and what do you love most about teaching people to fly?
+
+Do you have any student success stories? (e.g., "We've helped 50 pilots get their licenses in the last two years.")
+
+Can you send me 3–5 high-quality photos? I need the plane, you in the cockpit.
+
+4. Technical/Contact
+How do you want people to contact you? (Phone call, text, or email?)
+
+Do you have social media pages (Facebook/Instagram) that you want me to link to?</p>
     </div>
 
     <div id="notesGrid" class="notes-grid">
         </div>
 </div>
-
-<script>
-    // Load existing notes from local storage on startup
-    document.addEventListener('DOMContentLoaded', displayNotes);
-
-    function addNote() {
-        const textArea = document.getElementById('noteText');
-        const text = textArea.value;
-
-        if (text.trim() === "") return;
-
-        const note = {
-            id: Date.now(),
-            content: text,
-            date: new Date().toLocaleString()
-        };
-
-        let notes = JSON.parse(localStorage.getItem('hillNotes')) || [];
-        notes.unshift(note); // Add to the beginning
-        localStorage.setItem('hillNotes', JSON.stringify(notes));
-
-        textArea.value = "";
-        displayNotes();
-    }
-
-    function deleteNote(id) {
-        let notes = JSON.parse(localStorage.getItem('hillNotes')) || [];
-        notes = notes.filter(note => note.id !== id);
-        localStorage.setItem('hillNotes', JSON.stringify(notes));
-        displayNotes();
-    }
-
-    function displayNotes() {
-        const grid = document.getElementById('notesGrid');
-        const notes = JSON.parse(localStorage.getItem('hillNotes')) || [];
-        
-        grid.innerHTML = "";
-
-        notes.forEach(note => {
-            const card = document.createElement('div');
-            card.className = 'note-card';
-            card.innerHTML = `
-                <div class="note-text">${note.content}</div>
-                <div>
-                    <div class="timestamp">${note.date}</div>
-                    <button class="delete-btn" onclick="deleteNote(${note.id})">Clear Note</button>
-                </div>
-            `;
-            grid.appendChild(card);
-        });
-    }
-</script>
 
 </body>
 </html>

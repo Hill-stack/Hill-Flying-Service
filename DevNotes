@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hill Flying Service | Dispatch Notes</title>
+    <style>
+        :root {
+            --primary-red: #8B0000;
+            --dark-slate: #2c3e50;
+            --paper: #fffcf2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 3px solid var(--primary-red);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 { color: var(--dark-slate); margin: 10px 0; }
+
+        /* Input Area */
+        .note-input-area {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        button {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button:hover { background: #660000; }
+
+        /* Notes Display */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .note-card {
+            background: var(--paper);
+            padding: 15px;
+            border-left: 5px solid var(--primary-red);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .note-text { margin-bottom: 10px; white-space: pre-wrap; }
+
+        .delete-btn {
+            background: none;
+            color: #888;
+            border: none;
+            font-size: 0.8rem;
+            text-align: right;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+
+        .delete-btn:hover { color: var(--primary-red); }
+
+        .timestamp {
+            font-size: 0.7rem;
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Hill Dispatch Notes</h1>
+        <small>Pilot Log & Reminders</small>
+    </header>
+
+    <div class="note-input-area">
+        <textarea id="noteText" placeholder="Write a note (e.g., 'Oil change due for N51FR in 10 hours' or 'Student Smith solo tomorrow')"></textarea>
+        <button onclick="addNote()">Add Note</button>
+    </div>
+
+    <div id="notesGrid" class="notes-grid">
+        </div>
+</div>
+
+<script>
+    // Load existing notes from local storage on startup
+    document.addEventListener('DOMContentLoaded', displayNotes);
+
+    function addNote() {
+        const textArea = document.getElementById('noteText');
+        const text = textArea.value;
+
+        if (text.trim() === "") return;
+
+        const note = {
+            id: Date.now(),
+            content: text,
+            date: new Date().toLocaleString()
+        };
+
+        let notes = JSON.parse(localStorage.getItem('hillNotes')) || [];
+        notes.unshift(note); // Add to the beginning
+        localStorage.setItem('hillNotes', JSON.stringify(notes));
+
+        textArea.value = "";
+        displayNotes();
+    }
+
+    function deleteNote(id) {
+        let notes = JSON.parse(localStorage.getItem('hillNotes')) || [];
+        notes = notes.filter(note => note.id !== id);
+        localStorage.setItem('hillNotes', JSON.stringify(notes));
+        displayNotes();
+    }
+
+    function displayNotes() {
+        const grid = document.getElementById('notesGrid');
+        const notes = JSON.parse(localStorage.getItem('hillNotes')) || [];
+        
+        grid.innerHTML = "";
+
+        notes.forEach(note => {
+            const card = document.createElement('div');
+            card.className = 'note-card';
+            card.innerHTML = `
+                <div class="note-text">${note.content}</div>
+                <div>
+                    <div class="timestamp">${note.date}</div>
+                    <button class="delete-btn" onclick="deleteNote(${note.id})">Clear Note</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+</script>
+
+</body>
+</html>

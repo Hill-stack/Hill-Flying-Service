@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hill Flying Service | Dev Notes</title>
+    <style>
+        :root {
+            --primary-red: #8B0000;
+            --dark-slate: #2c3e50;
+            --paper: #fffcf2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 3px solid var(--primary-red);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 { color: var(--dark-slate); margin: 10px 0; }
+
+        /* Input Area */
+        .note-input-area {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        button {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button:hover { background: #660000; }
+
+        /* Notes Display */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .note-card {
+            background: var(--paper);
+            padding: 15px;
+            border-left: 5px solid var(--primary-red);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .note-text { margin-bottom: 10px; white-space: pre-wrap; }
+
+        .delete-btn {
+            background: none;
+            color: #888;
+            border: none;
+            font-size: 0.8rem;
+            text-align: right;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+
+        .delete-btn:hover { color: var(--primary-red); }
+
+        .timestamp {
+            font-size: 0.7rem;
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Hill Dev Notes</h1>
+        <small></small>
+    </header>
+
+    <div class="note-input-area">
+<h2>Some questions you can answer for me by emailing me at christianhill644@gmail.com</h2>
+  <ul>
+      <li>What is the primary airport you fly out of?</li>
+      <li>Which specific aircrafts do you use? (Just the models, like Cessna 172N or Piper Archer)</li>
+      <li>What are your main services? (Private Pilot, Instrument Rating, Commercial, or Discovery Flights?)</li>
+      <li>What is the price for a Discovery Flight?</li>
+      <li>Do you have a "standard" hourly rate for the plane vs. the instructor?</li>
+      <li>What makes Hill Flying Service different? (e.g., "I've been flying for 30 years," "We have the best maintenance," or "We offer flexible scheduling for working adults.")</li>
+      <li>What’s your "Origin Story"? Why did you start the school, and what do you love most about teaching people to fly?</li>
+      <li>Do you have any student success stories? (e.g., "We've helped 50 pilots get their licenses in the last two years.")</li>
+      <li>Can you send me 3–5 high-quality photos? I need the plane, you in the cockpit, that sort of thing.</li>
+      <li>How do you want people to contact you? (Phone call, text, or email?)</li>
+      <li>Do you have social media pages (Facebook/Instagram) that you want me to link to?</li>
+    </ul>
+        <p>Easy enough, talk to you soon.</p>
+        <p>- Christian</p>
+    </div>
+
+    <div id="notesGrid" class="notes-grid">
+        </div>
+</div>
+
+</body>
+</html>
